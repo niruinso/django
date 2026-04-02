@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Кузница Стиля – Металлоконструкции</title>
+  <meta name="description" content="Изготовление и продажа металлоконструкций на заказ в Казани. Качественные изделия из стали и нержавейки.">
+  <link rel="icon" href="static/images/favicon.ico" type="image/x-icon">
+  
+  <!-- Шрифты -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300i,400" rel="stylesheet">
+
+  <!-- Fancybox CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css" />
+
+  <!-- Подключаем свой CSS -->
+  <link rel="stylesheet" href="static/css/style.css" />
+
+  <!-- Подключаем JS -->
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js" defer></script>
+  <script src="static/js/main.js" defer></script>
+
+  <!-- Animate CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+  <!-- WOW.js -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="container">
+      <nav class="navbar">
+        <div class="logo-container">
+          <img src="static/images/logo.png" alt="Логотип" class="site-logo" width="200" height="130">
+        </div>
+
+        <div class="nav-right">
+          <ul class="nav-links">
+            <li><a href="#catalog" class="underline-default">Каталог</a></li>
+            <li><a href="#gallery" class="underline-default">Галерея</a></li>
+            <li><a href="#about" class="underline-default">О нас</a></li>
+            <li><a href="#contacts" class="underline-default">Контакты</a></li>
+            <li class="no-hover-line"><a class="btn btn-register" href="{% url 'login' %}">Вход</a></li>
+            <li class="no-hover-line"><a class="btn btn-register" href="{% url 'register' %}">Регистрация</a></li>
+          </ul>
+        </div>
+      </nav>
+
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Металлоконструкции на заказ</h1>
+          <p>Производство и установка прочных и эстетичных изделий по вашим чертежам.</p>
+          <a href="#contacts" class="btn">Связаться</a>
+        </div>
+      </section>
+    </div>
+  </header>
+
+  <!-- Catalog -->
+  <section id="catalog" class="catalog">
+    <div class="container">
+      <h2 class="wow fadeInUp" data-wow-duration="1s">Наша продукция</h2>
+      <div class="cards wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+        <div class="card wow fadeInLeft" data-wow-delay="0.2s">
+          <img src="static/images/ferma.jpg" alt="Фермы для дымоходов">
+          <h3>Стол</h3>
+          <p>Удобный и стильный для сборов со всей семьей.</p>
+        </div>
+        <div class="card wow fadeInUp" data-wow-delay="0.4s">
+          <img src="static/images/konstrukciya.jpg" alt="Блочно-модульные конструкции">
+          <h3>Костровая чаша</h3>
+          <p>Надежная конструкция и жаростойкая краска.</p>
+        </div>
+        <div class="card wow fadeInRight" data-wow-delay="0.6s">
+          <img src="static/images/bunker.jpg" alt="Бункера">
+          <h3>Угловой мангал</h3>
+          <p>Порошковая краска и стильный дизайн.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<!-- Gallery -->
+<section id="gallery" class="gallery">
+  <div class="container">
+    <h2 class="section-title wow fadeInUp">Наши работы</h2>
+    <div class="carousel-wrapper">
+      <button class="carousel-btn prev-btn">&#10094;</button>
+
+      <!-- Контейнер для ограничения видимости -->
+      <div class="carousel-viewport">
+        <div class="carousel-track">
+          <!-- Элементы -->
+          <div class="carousel-item">
+            <div class="gallery-grid">
+              <div class="card">
+                <a data-fancybox="gallery" href="../static/images/thumb_work1.jpg">
+                  <img src="../static/images/thumb_work1.jpg" alt="Работа 1">
+                </a>
+                <p>Обувница</p>
+              </div>
+            </div>
+          </div> <!-- Закрыт первый carousel-item -->
+          
+          <div class="carousel-item">
+            <div class="gallery-grid">
+              <div class="card">
+                <a data-fancybox="gallery" href="../static/images/thumb_work2.jpg">
+                  <img src="../static/images/thumb_work2.jpg" alt="Работа 2">
+                </a>
+                <p>Стол</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="gallery-grid">
+              <div class="card">
+                <a data-fancybox="gallery" href="../static/images/thumb_work3.jpg">
+                  <img src="../static/images/thumb_work3.jpg" alt="Работа 3">
+                </a>
+                <p>Полки</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="carousel-item">
+            <div class="gallery-grid">
+              <div class="card">
+                <a data-fancybox="gallery" href="../static/images/thumb_work4.jpg">
+                  <img src="../static/images/thumb_work4.jpg" alt="Работа 4">
+                </a>
+                <p>Мангал</p>
+              </div>
+            </div>
+          </div>
+        </div> <!-- Закрыт carousel-track -->
+      </div> <!-- Закрыт carousel-viewport -->
+      
+      <button class="carousel-btn next-btn">&#10095;</button>
+    </div> <!-- Закрыт carousel-wrapper -->
+  </div> <!-- Закрыт container -->
+</section>
+
+  <!-- About -->
+  <section id="about" class="about">
+    <div class="container">
+      <h2>О компании</h2>
+      <p>«Кузница Стиля» специализируется на изготовлении металлоконструкций любой сложности. Мы используем только качественные материалы и работаем по индивидуальным чертежам заказчика.</p>
+    </div>
+  </section>
+
+  <!-- Contacts -->
+  <section id="contacts" class="contacts">
+    <div class="container">
+      <h2>Контакты</h2>
+      <p>г. Казань, ул. Кремлевская, д. 35<br>
+         Телефон: +7 (953) 480-55-41<br>
+         Telegram: t.me/kznitsa_style</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 Кузница Стиля. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script>
+    new WOW().init();
+  </script>
+<!-- Вторая фиксированная эмблемка -->
+<a href="https://t.me/kznitsa_style"  target="_blank" class="floating-badge floating-badge-top">
+  <img src="/static/images/GOST.jpg" alt="Telegram 2" class="emblem-icon">
+</a>
+<!-- Первая фиксированная эмблемка -->
+<a href="https://t.me/kznitsa_style"  target="_blank" class="floating-badge">
+  <img src="/static/images/emblem.jpg" alt="Telegram" class="emblem-icon">
+</a>
+</body>
+</html>

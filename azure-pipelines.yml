@@ -1,0 +1,7 @@
+
+pool:
+  name: Default
+
+steps:
+- script: echo "Hello, world!"
+  displayName: 'Run a one-line script'

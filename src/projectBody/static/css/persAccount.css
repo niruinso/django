@@ -1,0 +1,187 @@
+:root {
+    /* Цветовые переменные для использования по всему проекту */
+    --primary-color: #6366f1;
+    --orange-bg: #f97316;
+    --dark-bg: #1e293b;
+    --card-bg: #ffffff;
+    --text-color: #334155;
+    --light-gray: #f1f5f9;
+    --border-radius: 12px;
+}
+
+body {
+    /* Общий стиль страницы */
+    background-color: var(--light-gray);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+}
+
+.profile-container {
+    /* Контейнер профиля */
+    max-width: 1200px;
+    margin: 0rem auto;
+    padding: 0 1rem;
+}
+
+.profile-grid {
+    /* Сетка из двух колонок: левая — информация, правая — активность */
+    display: grid;
+    grid-template-columns: 300px 1fr;
+    gap: 1.5rem;
+}
+
+.profile-card {
+    /* Карточка с профилем пользователя */
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid #e2e8f0;
+}
+
+/* Анимация при наведении для карточек */
+.profile-card,
+.activity-card {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.profile-card:hover,
+.activity-card:hover {
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px);
+}
+
+.profile-header {
+    /* Заголовок в карточке профиля */
+    text-align: center;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #00050a;
+    margin-bottom: 1.5rem;
+}
+
+.profile-avatar {
+    /* Аватар пользователя (инициалы или картинка) */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: var(--orange-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 1rem;
+    color: white;
+    font-size: 3.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.profile-name {
+    /* Имя пользователя */
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: black;
+}
+
+.profile-badge {
+    /* Значок или метка рядом с именем */
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.info-item {
+    /* Элемент информации (например, email, телефон) */
+    display: flex;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.info-item:last-child {
+    /* Убираем нижнюю границу у последнего элемента */
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.info-label {
+    /* Название поля информации (например, "Email") */
+    flex: 0 0 120px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.contact-label {
+    /* Альтернативная метка для контактной информации */
+    flex: 0 0 90px;
+    font-weight: 500;
+    color: #64748b;
+}
+
+.info-value {
+    /* Значение поля информации */
+    flex: 1;
+    color: var(--text-color);
+    word-break: break-all; /* Переносит длинные слова */
+    white-space: normal;   /* Разрешает перенос текста */
+}
+
+.email {
+    /* Стилизация email — с усечением, если слишком длинный */
+    color: var(--text-color);
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.section-title {
+    /* Заголовок секции, например "Активность" */
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1.25rem;
+    color: #1e293b;
+}
+
+.activity-card {
+    /* Карточка активности пользователя */
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    color: #64748b;
+}
+
+.btn-primary {
+    /* Основная кнопка */
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.user-avatar {
+    /* Аватар пользователя с картинкой */
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 1rem;
+    display: block;
+    border: 3px solid var(--orange-bg);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+    /* Адаптивность: на маленьких экранах сетка становится одноколоночной */
+    .profile-grid {
+        grid-template-columns: 1fr;
+    }
+}

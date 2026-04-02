@@ -1,0 +1,122 @@
+{% extends "personalAccount/base.html" %}
+{% block title %}Профиль пользователя{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <div class="profile-grid">
+        <!-- Левая колонка -->
+        <div>
+            <div class="profile-card">
+                <div class="profile-header">
+                    {% if request.user.is_authenticated %}
+                        {% if user.profile.avatar %}
+                            <img src="{{ user.profile.avatar.url }}?{% now 'U' %}" alt="Аватар" class="user-avatar"
+                                 onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                            <div class="user-initial" style="display:none;">
+                                {{ request.user.username|first }}
+                            </div>
+                        {% else %}
+                            <div class="user-initial">
+                                {{ request.user.username|first }}
+                            </div>
+                        {% endif %}
+                        <h4 class="profile-name">{{ request.user.username }}</h4>
+                    {% else %}
+                        <div class="user-initial">?</div>
+                        <h4 class="profile-name">Гость</h4>
+                    {% endif %}
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Статус</div>
+                    <div class="info-value">Активный</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Регистрация</div>
+                    <div class="info-value">{{ user.date_joined|date:"d.m.Y" }}</div>
+                </div>
+            </div>
+            
+            <div class="profile-card">
+                <h3 class="section-title">Контакты</h3>
+                
+                <div class="info-item">
+                <div class="contact-label">Email</div>
+                <div class="email" data-bs-toggle="tooltip" title="{{ user.email }}">
+                    {{ user.email|truncatechars:25 }}
+                </div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="contact-label">Телефон</div>
+                    <div class="info-value">{{ user.phone_number|default:"Не указан" }}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="contact-label">Адрес</div>
+                    <div class="info-value">{{ user.address|default:"Не указан" }}</div>
+                </div>
+            </div>
+
+            <div class="profile-card">
+                <h3 class="section-title">Управление аккаунтом</h3>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">
+                        <a href="{% url 'user_dashboard:order_history' %}" class="text-decoration-none">История заказов</a>
+                    </li>
+                    <li class="list-group-item">
+                        <a href="{% url 'user_dashboard:user_settings' %}" class="text-decoration-none">Настройки аккаунта</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Правая колонка -->
+        <div>
+            <div class="profile-card">
+                <h3 class="section-title">Основная информация</h3>
+                
+                <div class="info-item">
+                    <div class="info-label">Полное имя</div>
+                    <div class="info-value">{{ user.get_full_name|default:"Не указано" }}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Имя пользователя</div>
+                    <div class="info-value">{{ user.username }}</div>
+                </div>
+                
+                <div class="info-item">
+                    <div class="info-label">Последний вход</div>
+                    <div class="info-value">{{ user.last_login|date:"d.m.Y H:i"|default:"Недавно" }}</div>
+                </div>
+            </div>
+            
+            <div class="activity-card">
+                <h3 class="section-title">Активность</h3>
+                <p>Здесь будет отображаться история действий, заказов и другая активность.</p>
+                
+                <div class="mt-4">
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Заказы</span>
+                        <span>0</span>
+                    </div>
+                    <div class="d-flex justify-content-between mb-2">
+                        <span>Отзывы</span>
+                        <span>0</span>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <span>На сайте</span>
+                        <span>{{ user.date_joined|timesince }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="text-center mt-4">
+        <a href="{% url 'main' %}" class="btn btn-primary">На главную</a>
+    </div>
+</div>
+{% endblock %}

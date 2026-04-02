@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Аутентификация пользователя{% endblock %}</title>
+    <link rel="icon" href="../../../static/images/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/css/register.css">
+    <link rel="stylesheet" href="/static/css/reset.css">
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Логотип слева -->
+            <a class="navbar-brand d-flex align-items-center" href="{% url 'main' %}">
+                <img src="/static/images/logo.png" alt="Логотип" width="30" height="30" class="me-2">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Правая часть меню -->
+                <div class="nav-right">
+                <ul class="nav-links">
+                    <li><a href="/#catalog" style="font-size: 20px;">Каталог</a></li>
+                    <li><a href="/#gallery" style="font-size: 20px;">Галерея</a></li>
+                    <li><a href="/#about" style="font-size: 20px;">О нас</a></li>
+                    <li><a href="/#contacts" style="font-size: 20px;">Контакты</a></li>
+                </ul>
+                </div>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html> 

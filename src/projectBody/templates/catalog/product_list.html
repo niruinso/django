@@ -1,0 +1,49 @@
+{% extends 'catalog/base.html' %}   <!--Наследование от базового шаблона сайта-->
+{% load catalog_extras %}           <!--Загрузка пользовательских фильтров и тегов, если нужно (например, format_price)-->
+
+{% block title %}Товары категории {{ category_name }}{% endblock %} <!--Заголовок страницы, зависит от выбранной категории-->
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1>Товары категории: {{ category_name }}</h1>  <!--Заголовок на странице-->
+        <p>
+            <a href="{% url 'catalog:category_list' %}" class="btn btn-sm btn-outline-secondary mb-3">
+                &larr; Назад к категориям
+            </a>  <!--Кнопка возврата к списку категорий-->
+        </p>
+    </div>
+</div>
+
+<div class="row mt-3">
+    {% if products %}
+        <!--Цикл по товарам в категории-->
+        {% for product in products %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if product.images %}
+                    <!--Если у товара есть изображения — показываем первое-->
+                    <img src="{{ product.images.0.url }}" class="card-img-top" alt="{{ product.name }} - Фото">
+                {% else %}
+                    <!--Если изображений нет — отображаем заглушку-->
+                    <div class="card-img-top d-flex align-items-center justify-content-center bg-light text-muted" style="height: 200px;">
+                        Нет изображений для {{ product.name }}
+                    </div>
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ product.name }}</h5>  <!--Название товара-->
+                    <a href="{% url 'catalog:product_detail' category_id=category_id product_id=product.id %}" class="btn btn-primary">
+                        Подробнее
+                    </a>  <!--Ссылка на подробную страницу товара-->
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <!--Сообщение, если в категории нет товаров-->
+        <div class="col-md-12">
+            <p>В этой категории пока нет товаров.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}

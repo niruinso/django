@@ -1,0 +1,385 @@
+/* === Основные стили от вас === */
+
+/* Общий стиль для body */
+body {
+    background: url('/static/images/phone.jpg') center center / cover no-repeat;
+    /* Фоновое изображение фиксируется по центру и масштабируется под размер экрана */
+    background-attachment: scroll;
+    /* Фон прокручивается вместе с контентом (ранее был fixed) */
+    color: white;
+    /* Цвет текста по умолчанию — белый */
+}
+
+/* Стиль для правого меню */
+.nav-right {
+    justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    /* Расстояние между ссылками */
+}
+
+/* Список навигационных ссылок */
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 1;
+    /* Убираем стандартные отступы и маркеры списка */
+}
+
+/* Стиль ссылок меню */
+.nav-links li a {
+    color: #fff;
+    text-shadow:
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+    /* Контур вокруг светлых ссылок на тёмном фоне */
+    font-weight: 600;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    /* Базовые стили для ссылок в меню */
+}
+
+/* Эффект при наведении на ссылки */
+.nav-links li a:hover,
+.nav-links li a:focus {
+    color: #000;
+    background-color: rgba(0, 0, 0, 0.08);
+    padding: 4px 10px;
+    border-radius: 5px;
+    text-shadow: 0 0 1px rgba(255, 255, 255, 0.7);
+    /* При наведении цвет текста темнеет, добавляется фон и текст становится чуть четче */
+}
+
+/* Подчеркивание ссылок при наведении */
+.nav-links li a {
+    position: relative;
+    z-index: 1;
+    /* Чтобы ::after работал корректно */
+}
+
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    width: 100%;
+    height: 2px;
+    background: #fff;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: bottom right;
+    /* Стиль подчеркивания при ховере */
+}
+
+.nav-links li a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+    /* При наведении подчеркивание заполняет всю ширину */
+}
+
+/* Стиль кнопки "Войти" */
+.btn-register {
+    background-color: #ff9800;
+    color: white;
+    padding: 8px 16px;
+    font-size: 14px;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    pointer-events: auto;
+    border: 1px solid #ff9800;
+    /* Оранжевая кнопка с закруглениями и переходами */
+}
+
+/* Изменение стиля при наведении на btn-register */
+.btn-register:hover {
+    background-color: white;
+    color: black;
+    border: 1px solid #ff9800;
+    /* При ховере кнопка меняет цвет на белую с оранжевой рамкой */
+}
+
+/* Прозрачный фон с полупрозрачным слоем */
+.container mt-5 {
+    background-color: rgba(0, 0, 0, 0.6);
+    padding: 30px;
+    border-radius: 12px;
+    /* Для основного контейнера с формой */
+}
+
+/* Карточка формы */
+.card {
+    max-width: 500px;
+    margin: auto;
+    width: 100%;
+    border-radius: 30px;
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    /* Легкий фон карточки для контрастности */
+}
+
+/* Шапка карточки */
+.card-header {
+    background-color: #ffffff;
+    border-bottom: none;
+    padding: 1.5rem;
+    text-align: center;
+    /* Чистый белый фон шапки карточки */
+}
+
+/* Заголовок внутри карточки */
+.card-header h3 {
+    color: #1e3c72;
+    font-weight: 700;
+    /* Тёмно-синий цвет заголовка */
+}
+
+/* Подпись к полям формы */
+.form-label {
+    font-weight: 500;
+    color: #333;
+    /* Полужирный серый текст подписей */
+}
+
+/* Поля ввода: input, select, textarea */
+.form-control,
+.form-select,
+textarea.form-control {
+    width: 100%;
+    border-radius: 20px !important;
+    padding: 10px 14px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease;
+    /* Плавное изменение цвета границы при фокусе */
+}
+
+/* Стиль при фокусировке на поле ввода */
+.form-control:focus {
+    border-color: #1e3c72;
+    box-shadow: 0 0 0 0.2rem rgba(30, 60, 114, 0.25);
+    /* Тёмно-синяя рамка при фокусе */
+}
+
+/* Кнопка отправки формы */
+.btn-primary {
+    background-color: #1e3c72;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    /* Синяя кнопка с плавными закруглениями */
+}
+
+/* Кнопка при наведении */
+.btn-primary:hover {
+    background-color: #1a3460;
+    /* Темнее при наведении */
+}
+
+/* Контурные кнопки "Войти", "Зарегистрироваться" */
+a.btn-outline-primary {
+    border-radius: 20px;
+    /* Мягкие углы у контурных кнопок */
+}
+
+/* Стиль логотипа в шапке */
+.navbar-brand img {
+    width: 230px;
+    height: 150px;
+    vertical-align: middle;
+    transition: transform 0.3s ease;
+    /* Увеличение логотипа при наведении */
+}
+
+/* Анимация увеличения логотипа */
+.navbar-brand:hover img {
+    transform: scale(1.1);
+    /* Лёгкое увеличение при наведении */
+}
+
+/* Стили для мобильной версии */
+@media (max-width: 768px) {
+    .card {
+        border-radius: 20px;
+    }
+    .btn-primary {
+        border-radius: 20px;
+    }
+    /* Упрощённые закругления на мобильных устройствах */
+}
+
+/* === Анимации от меня === */
+
+/* Появление карточки с анимацией */
+.card {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 1s ease forwards;
+    /* Делаем форму плавно появляющейся сверху */
+}
+
+/* Ключевые кадры для fadeInUp */
+@keyframes fadeInUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    /* Постепенное появление карточки */
+}
+
+/* Эффект при наведении на карточку */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+    /* Лёгкое "приподнимание" карточки */
+}
+
+/* Анимация появления текста "Уже есть аккаунт?" */
+.account-links {
+    opacity: 0;
+    animation: fadeInText 0.8s ease-in-out 0.6s forwards;
+    /* Появляется чуть позже остальных элементов */
+}
+
+@keyframes fadeInText {
+    to {
+        opacity: 1;
+    }
+    /* Постепенное появление текста */
+}
+
+/* Плавное появление всей формы */
+.animate-fadein {
+    opacity: 0;
+    animation: fadeInContent 1s ease forwards;
+    /* Форма появляется мягко */
+}
+
+@keyframes fadeInContent {
+    to {
+        opacity: 1;
+    }
+    /* По завершению анимации форма видна полностью */
+}
+
+/* === Анимации для кнопок === */
+
+/* Эффект пульсации на кнопках */
+.btn-primary,
+.btn-register {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+    /* Чтобы анимация ::after не вылезала за края */
+}
+
+/* Создаём точку рикошета при ховере */
+.btn-primary::after,
+.btn-register::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.6);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1);
+    transform-origin: 50% 50%;
+    /* Внутренний эффект "пульсации" */
+}
+
+.btn-primary:hover::after,
+.btn-register:hover::after {
+    animation-name: ripple;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    /* Плавное расширение круга при наведении */
+}
+
+/* Ключевые кадры для "пульсации" */
+@keyframes ripple {
+    0% {
+        transform: scale(0);
+        opacity: 0.7;
+    }
+    100% {
+        transform: scale(40);
+        opacity: 0;
+    }
+    /* Эффект "вспышки" при наведении на кнопки */
+}
+
+/* Подсветка при наведении */
+.btn-primary,
+.btn-register {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    color: white !important;
+    text-decoration: none !important;
+    /* Чтобы анимации применялись правильно */
+}
+
+.btn-primary:hover,
+.btn-register:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    /* Кнопка немного поднимается и получает тень */
+}
+
+/* Эффект при клике */
+.btn-register:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    /* Имитация "нажатия" кнопки */
+}
+
+/* Анимация "вспышка света" для кнопок */
+.btn-primary::before,
+.btn-register::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: -50%;
+    width: 100%;
+    height: 300%;
+    background: linear-gradient(
+        125deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transform: rotate(45deg);
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.9s ease;
+    /* Невидимый блок для эффекта вспышки */
+}
+
+.btn-primary:hover::before,
+.btn-register:hover::before {
+    opacity: 1;
+    animation: shine 1.5s ease-in-out infinite;
+    /* Вспышка проходит через кнопку при наведении */
+}
+
+/* Ключевые кадры для вспышки */
+@keyframes shine {
+    0% { left: -50%; }
+    50% { left: 125%; }
+    100% { left: 125%; }
+    /* Эффект движения светового блика */
+}

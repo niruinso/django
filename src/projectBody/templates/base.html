@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8"> <!-- Установка кодировки страницы -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Адаптивность на мобильных устройствах -->
+    <title>{% block title %}Мой Магазин{% endblock %}</title> <!-- Блок заголовка страницы, можно переопределить -->
+
+    <!-- Подключение Bootstrap для стилизации -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    {% load catalog_extras %} <!-- Загрузка пользовательских шаблонных тегов (например, format_price) -->
+
+    <style>
+        body { padding-top: 20px; } /* Отступ сверху */
+        .card-img-top {
+            width: 100%;
+            height: 200px;
+            object-fit: cover; /* Картинка не искажает пропорции, а заполняет контейнер */
+        }
+        .product-detail-img {
+            max-width: 100%;
+            height: auto;
+            margin-bottom: 15px; /* Отступ снизу у изображения на странице товара */
+        }
+    </style>
+</head>
+<body>
+    <div class="container"> <!-- Основной контейнер страницы -->
+
+        <!-- Навигационная панель -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+            <a class="navbar-brand" href="{% url 'main' %}">Главная</a> <!-- Ссылка на главную -->
+
+            <!-- Кнопка для мобильной версии -->
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Содержимое навбара (меню и корзина) -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mr-auto">
+                    <!-- Условие: если уже на странице категорий, не показывать ссылку повторно -->
+                    {% if request.resolver_match.namespace == 'catalog' and request.resolver_match.url_name == 'category_list' %}
+                    {% else %}
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'catalog:category_list' %}">Каталог</a>
+                        </li>
+                    {% endif %}
+                </ul>
+
+                <!-- Блок корзины, выровнен вправо -->
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {% with total_items=cart|length %}
+                            {% if total_items > 0 %}
+                                <a class="nav-link" href="{% url 'cart:cart_detail' %}">
+                                    Корзина: {{ total_items }} товар(а/ов), {{ cart.get_total_price|format_price }}
+                                </a>
+                            {% else %}
+                                <a class="nav-link" href="{% url 'cart:cart_detail' %}">Корзина пуста</a>
+                            {% endif %}
+                        {% endwith %}
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        {% block content %} <!-- Контент страницы, переопределяется в дочерних шаблонах -->
+        {% endblock %}
+    </div>
+
+    <!-- Подключение JS-библиотек Bootstrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

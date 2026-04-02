@@ -1,0 +1,295 @@
+:root {
+    /* Основные переменные темы */
+    --primary-color: #6366f1;        /* Основной цвет кнопок и ссылок */
+    --card-bg: #ffffff;              /* Цвет фона карточек */
+    --text-color: #334155;           /* Основной цвет текста */
+    --light-gray: #f1f5f9;           /* Цвет фона страницы */
+    --border-radius: 12px;           /* Радиус скругления углов */
+    --success-color: #10b981;        /* Цвет иконки успешной операции */
+}
+
+body {
+    background-color: var(--light-gray);  /* Фоновый цвет страницы */
+    font-family: 'Inter', sans-serif;     /* Шрифт интерфейса */
+}
+
+/* Общий контейнер для страниц подтверждения */
+.complete-container {
+    max-width: 500px;
+    width: 100%;
+    margin: 2rem auto;  /* Центрирование по горизонтали и вертикальные отступы */
+}
+
+.complete-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    text-align: center;
+}
+
+.complete-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+}
+
+.complete-message {
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.icon-success {
+    font-size: 3rem;
+    color: var(--success-color);
+    display: block;
+    margin-bottom: 1rem;
+}
+
+/* Кнопка перехода к логину */
+.btn-login {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-login:hover {
+    background-color: #4f46e5;  /* Цвет кнопки при наведении */
+}
+
+/* Секция сброса пароля */
+.reset-password-container {
+    max-width: 500px;
+    width: 100%;
+    margin: 2rem auto;
+}
+
+.reset-password-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+}
+
+.reset-password-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #475569;
+}
+
+/* Поля ввода пароля */
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.2s;
+}
+
+/* Стили при фокусе на input */
+input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Кнопка отправки формы */
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: #4f46e5;
+}
+
+/* Сообщение об ошибке */
+.error-message {
+    color: var(--danger-color);  /* Переменная не определена! Нужно добавить в :root */
+    font-size: 0.875rem;
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Ссылка на вход */
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #64748b;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}
+
+/* Общая карточка с сообщением */
+.message-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    max-width: 600px;
+    margin: 2rem auto;
+}
+
+.message-title {
+    font-size: 1.75rem;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.message-text {
+    color: #475569;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Иконка успеха (повторно объявлена, но не конфликтует) */
+.icon-success {
+    font-size: 3rem;
+    color: var(--success-color);
+    display: block;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+/* Ссылка "назад" */
+.back-link {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+/* Карточка подтверждения сброса пароля */
+.password-reset-card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    border: 1px solid #e2e8f0;
+    max-width: 500px;
+    margin: 2rem auto;
+}
+
+.password-reset-title {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1e293b;
+    text-align: center;
+}
+
+.password-reset-message {
+    color: #64748b;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* Группа формы */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #475569;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(99, 102, 241, 0.2);
+}
+
+/* Повтор кнопки отправки */
+.btn-submit {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 1rem;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-submit:hover {
+    background-color: #4f46e5;
+}
+
+/* Повтор стиля ссылки на логин */
+.login-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    color: #64748b;
+}
+
+.login-link a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

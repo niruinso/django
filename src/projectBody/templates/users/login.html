@@ -1,0 +1,83 @@
+{% extends "users/base.html" %}
+{# Наследуемся от общего шаблона base.html #}
+
+{% block title %}Вход{% endblock %}
+{# Заголовок страницы в браузере #}
+
+{% block content %}
+{# Основной блок контента (вставляется в base.html) #}
+
+<!-- Центрированный ряд -->
+<div class="row justify-content-center">
+    {# justify-content-center = горизонтальное центрирование на экране #}
+    
+    <!-- Колонка под форму -->
+    <div class="col-md-6">
+        {# col-md-6 = 50% ширины экрана на средних и больших устройствах #}
+        
+        <!-- Карточка формы -->
+        <div class="card shadow-lg" style="border-radius: 30px; overflow: hidden;">
+            {# border-radius: 30px = закругление углов карточки #}
+            {# overflow: hidden = обрезает всё, что выходит за рамки карточки #}
+            
+            <!-- Шапка карточки -->
+            <div class="card-header">
+                <h3 class="text-center">Вход в систему</h3>
+                {# Текст заголовка по центру #}
+            </div>
+
+            <!-- Основное содержимое карточки -->
+            <div class="card-body">
+                {# card-body = внутренний отступ вокруг формы #}
+
+                <!-- Форма входа -->
+                <form method="post" action="{% url 'login' %}">
+                    {% csrf_token %}
+                    {# Защита от CSRF-атак в Django #}
+
+                    <!-- Поле "Email" -->
+                    <div class="mb-3">
+                        {# mb-3 = отступ снизу у поля #}
+                        <label for="username" class="form-label">Email</label>
+                        <input type="text" name="username" class="form-control" required>
+                        {# form-control = стандартный стиль Bootstrap для полей ввода #}
+                    </div>
+
+                    <!-- Поле "Пароль" -->
+                    <div class="mb-3">
+                        <label for="password" class="form-label">Пароль</label>
+                        <input type="password" name="password" class="form-control" required>
+                    </div>
+
+                    <!-- Кнопка "Войти" -->
+                    <div class="d-grid gap-2">
+                        {# d-grid + gap-2 = кнопка в виде сетки с небольшим отступом #}
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                        {# btn btn-primary = красивая цветная кнопка #}
+                    </div>
+                </form>
+
+                <!-- Ссылки: восстановить пароль / зарегистрироваться -->
+                <div class="mt-3 text-center" style="color: #000000;">
+                    {# mt-3 = отступ сверху #}
+                    
+                    <p>Забыли пароль? 
+                        <a href="{% url 'password_reset' %}" style="border-radius: 20px;" class="btn btn-outline-primary btn-sm">
+                            Восстановить
+                        </a>
+                    </p>
+                    {# btn-outline-primary = кнопка с контуром #}
+                    {# btn-sm = маленький размер кнопки #}
+                    
+                    <p>Нет аккаунта? 
+                        <a href="{% url 'register' %}" style="border-radius: 20px;" class="btn btn-outline-primary btn-sm">
+                            Зарегистрироваться
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

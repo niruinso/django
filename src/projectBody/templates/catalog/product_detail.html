@@ -1,0 +1,109 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_extras %}
+
+{% block title %}{{ product.name }} (Категория: {{ category_name }}){% endblock %}
+
+<!-- Полная информация о товаре -->
+{% block content %}
+<div class="row">
+  <div class="col-md-8">
+    <h1>{{ product.name }}</h1>
+    <p><strong>Категория:</strong> {{ category_name }}</p>
+
+    {% if product.description %}
+      <p><strong>Описание:</strong> {{ product.description }}</p>
+    {% endif %}
+
+    {% if product.size %}
+      <p><strong>Размер:</strong> {{ product.size }}</p>
+    {% endif %}
+
+    {% if product.price %}
+      <p><strong>Цена:</strong> {{ product.price|format_price }}</p>
+    {% endif %}
+
+    <form action="{% url 'cart:cart_add' product.id %}" method="post" class="mt-3 mb-3">
+      {% csrf_token %}
+      {{ cart_product_form.quantity.label_tag }}
+      {{ cart_product_form.quantity }}
+      {{ cart_product_form.update }}
+      <button type="submit" class="btn btn-primary mr-2">В корзину</button>
+    </form>
+
+    <p>
+      <a href="{% url 'catalog:product_list' category_id=category_id %}" class="btn btn-sm btn-outline-secondary mb-3">&larr; Назад к категории {{ category_name }}</a>
+    </p>
+  </div>
+
+<!-- Фотографии в слайдере -->
+<div class="col-md-4">
+  <div class="slider-container position-relative">
+    <div class="slider-track" id="sliderTrack">
+      {% if images %}
+        {% for image in images %}
+          <div class="slider-item">
+            <div class="card">
+              <img src="{{ image.url }}" class="card-img-top" alt="{{ image.name }}">
+            </div>
+          </div>
+        {% endfor %}
+      {% else %}
+        <p>Нет изображений для этого товара.</p>
+      {% endif %}
+    </div>
+
+    <!-- Кнопки -->
+    <button class="carousel-btn prev-btn btn btn-light btn-circle">&#9664;</button>
+    <button class="carousel-btn next-btn btn btn-light btn-circle">&#9654;</button>
+  </div>
+
+</div>
+
+{% if error %}
+  <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+<script>
+  // Ждем полной загрузки DOM перед выполнением скрипта
+  document.addEventListener('DOMContentLoaded', function () {
+    //Получаем элементы DOM
+    const track = document.getElementById('sliderTrack'); // Дорожка слайдера
+    const items = document.querySelectorAll('.slider-item'); // Все слайды
+    let currentIndex = 0; // Текущий активный слайд
+
+    //Функция обновления позиции слайдера
+    function updateSlider() {
+      const itemWidth = track.clientWidth; // Ширина видимой области слайдера
+      // Сдвигаем дорожку на нужную позицию
+      track.style.transform = `translateX(-${currentIndex * itemWidth}px)`;
+    }
+
+    //Обработчик кнопки "Вперед"
+    document.querySelector('.next-btn')?.addEventListener('click', function () {
+      // Если не последний слайд - увеличиваем индекс, иначе возвращаемся к первому
+      if (currentIndex < items.length - 1) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      updateSlider(); // Обновляем позицию
+    });
+
+    //Обработчик кнопки "Назад"
+    document.querySelector('.prev-btn')?.addEventListener('click', function () {
+      // Если не первый слайд - уменьшаем индекс, иначе переходим к последнему
+      if (currentIndex > 0) {
+        currentIndex--;
+      } else {
+        currentIndex = items.length - 1;
+      }
+      updateSlider(); // Обновляем позицию
+    });
+
+    //Обработчик изменения размера окна
+    window.addEventListener('resize', updateSlider);
+    updateSlider(); // Инициализация слайдера при загрузке
+  });
+</script>
+
+{% endblock %}

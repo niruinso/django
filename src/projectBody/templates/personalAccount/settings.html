@@ -1,0 +1,135 @@
+{% extends "personalAccount/base.html" %}
+{% load static %}
+
+{% block title %}Настройки пользователя{% endblock %}
+
+{% block scripts %}
+<script>
+document.getElementById('avatarForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let formData = new FormData(this);
+    
+    fetch(this.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('#avatarForm input[name="csrfmiddlewaretoken"]').value
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success) {
+            // Обновляем превью
+            let avatarPreview = document.getElementById('avatarPreview');
+            if(avatarPreview) {
+                avatarPreview.src = data.avatar_url + '?' + new Date().getTime();
+            }
+            // Показываем сообщение
+            alert('Аватар успешно обновлен!');
+        } else {
+            alert('Ошибка: ' + data.error);
+        }
+    });
+});
+</script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="text-center">Настройки пользователя</h3>
+                </div>
+                <div class="card-body" style="color: black;">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert {% if message.tags %}alert-{{ message.tags }}{% else %}alert-info{% endif %} alert-dismissible fade show" role="alert">
+                                {{ message }}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    
+                    <h4>Изменить аватар</h4>
+                    <form method="post" action="{% url 'user_dashboard:user_settings' %}" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="avatarInput">Текущий аватар:</label>
+                            {% if request.user.profile.avatar %}
+                                <img src="{{ request.user.profile.avatar.url }}?{% now 'U' %}" 
+                                    class="img-thumbnail mb-2" 
+                                    width="100"
+                                    id="avatarPreview">
+                            {% else %}
+                                <div class="text-muted">Аватар не установлен</div>
+                            {% endif %}
+                            <input type="file" class="form-control-file" id="avatarInput" name="avatar" accept="image/*">
+                        </div>
+                        <button type="submit" class="btn btn-primary mt-2" name="change_avatar">Сохранить фото</button>
+                    </form>
+
+                    <!-- Форма смены пароля -->
+                    <h4 class="mt-4">Изменить пароль</h4>
+                    <form method="post" action="{% url 'user_dashboard:user_settings' %}">
+                        {% csrf_token %}
+                        {{ password_form.as_p }}
+                        <button type="submit" name="change_password" class="btn btn-primary mt-2">Сохранить пароль</button>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- Форма смены email -->
+                    <h4>Изменить Email</h4>
+                    <form method="post" action="{% url 'user_dashboard:user_settings' %}">
+                        {% csrf_token %}
+                        {{ email_form.as_p }}
+                        <button type="submit" name="change_email" class="btn btn-primary mt-2">Сохранить Email</button>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- Форма смены номера телефона -->
+                    <h4>Изменить номер телефона</h4>
+                    <form method="post" action="{% url 'user_dashboard:user_settings' %}">
+                        {% csrf_token %}
+                        {{ phone_form.as_p }}
+                        <button type="submit" name="change_phone" class="btn btn-primary mt-2">Сохранить телефон</button>
+                    </form>
+
+                    <!-- Форма смены адреса -->
+                    <hr class="my-4">
+                    <h4>Изменить адрес</h4>
+                    <form method="post" action="{% url 'user_dashboard:user_settings' %}">
+                        {% csrf_token %}
+                        {{ address_form.as_p }}
+                        <button type="submit" name="change_address" class="btn btn-primary mt-2">Сохранить адрес</button>
+                    </form>
+
+                    <hr class="my-4">
+
+                    <!-- Секция удаления аккаунта -->
+                    <div class="card mt-4 border-danger">
+                        <div class="card-header bg-danger text-white">
+                            <h4 class="mb-0">Удаление аккаунта</h4>
+                        </div>
+                        <div class="card-body">
+                            <p class="card-text" style="color: black;">
+                                Внимание! Удаление аккаунта приведет к деактивации вашего профиля и анонимизации ваших личных данных.
+                                Это действие необратимо.
+                            </p>
+                            <a href="{% url 'user_dashboard:delete_account' %}" class="btn btn-danger">Перейти к удалению аккаунта</a>
+                        </div>
+                    </div>
+                    
+
+                    <div class="text-center mt-5">
+                        <a href="{% url 'user_dashboard:mainAccount' %}" class="btn btn-secondary">К профилю</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

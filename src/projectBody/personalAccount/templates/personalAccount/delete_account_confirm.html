@@ -1,0 +1,23 @@
+{% extends 'personalAccount/base.html' %}
+
+{% block title %}Подтверждение удаления аккаунта - Кузница Стиля{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="delete-account-container">
+        <h2>Удаление аккаунта</h2>
+        <p>Вы уверены, что хотите удалить свой аккаунт?</p>
+        <p class="warning-text">
+            <strong>Внимание!</strong> Это действие необратимо.
+            Ваш профиль будет деактивирован, и вы больше не сможете войти в систему с текущими данными.
+            Некоторая информация, связанная с вашим аккаунтом, будет анонимизирована.
+        </p>
+        <form method="POST" action="{% url 'user_dashboard:delete_account' %}">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger-custom me-2">Да, удалить мой аккаунт</button>
+            <a href="{% url 'user_dashboard:user_settings' %}" class="btn btn-secondary-custom">Отмена</a>
+        </form>
+    </div>
+</div>
+{% endblock %} 

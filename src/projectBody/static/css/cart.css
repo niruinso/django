@@ -1,0 +1,53 @@
+/* === Замена оранжевого на синий === */
+
+  /* Кнопки */
+  .btn {
+    background-color: #ff5722 !important;
+    color: white !important;
+    border-color: #0d6efd !important;
+  }
+
+  .btn:hover {
+    background-color: #0b5ed7 !important;
+    border-color: #0b5ed7 !important;
+  }
+
+  /* Цвет рамки аватара в боковой панели */
+  .sidebar-header img {
+    border-color: #0d6efd !important;
+  }
+
+  /* Дополнительные стили из оригинального шаблона */
+  .text-blue {
+    color: #0d6efd !important;
+  }
+
+  .btn-blue {
+    background-color: #0d6efd;
+    color: white;
+    border-color: #0d6efd;
+  }
+
+  .btn-blue:hover {
+    background-color: #0b5ed7;
+    border-color: #0b5ed7;
+    color: white;
+  }
+
+  .btn-outline-blue {
+    color: #0d6efd;
+    border-color: #0d6efd;
+  }
+
+  .btn-outline-blue:hover {
+    background-color: #0d6efd;
+    color: white;
+  }
+
+  .bg-light-blue {
+    background-color: #f8f9fa;
+  }
+
+  .object-fit-cover {
+    object-fit: cover;
+  }

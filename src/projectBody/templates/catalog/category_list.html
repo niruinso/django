@@ -1,0 +1,51 @@
+{% extends 'catalog/base.html' %}
+{% load catalog_extras %}
+<!--Загружаем пользовательские теги/фильтры-->
+
+{% block title %}Категории товаров{% endblock %}
+
+{% block content %}
+<div class="row">
+    {% if categories_with_products %}
+        {% for category in categories_with_products %}
+        <div class="col-md-12 mb-4">
+            <h2>{{ category.name }}</h2>
+            <div class="row">
+                {% for product in category.products %}
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        {% if product.images %}
+                            <img src="{{ product.images.0.url }}" class="card-img-top" alt="{{ product.name }} - Фото">
+                        {% else %}
+                            <div class="card-img-top d-flex align-items-center justify-content-center bg-light text-muted" style="height: 200px;">
+                                Нет изображений для {{ product.name }}
+                            </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ product.name }}</h5>
+                            <a href="{% url 'catalog:product_detail' category_id=category.id product_id=product.id %}" class="btn btn-primary">Подробнее</a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <div class="col-md-12">
+            <p>Категории не найдены.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+
+{% comment %}
+Чтобы использовать filter |get_item:key в шаблоне Django для доступа к элементу словаря по ключу,
+нам нужно зарегистрировать простой тег или фильтр. 
+Создадим templatetags в приложении catalog.
+{% endcomment %} 
+{% comment %}
+Чтобы использовать filter |get_item:key в шаблоне Django для доступа к элементу словаря по ключу,
+нам нужно зарегистрировать простой тег или фильтр. 
+Создадим templatetags в приложении catalog.
+{% endcomment %} 
