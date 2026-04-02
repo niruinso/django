@@ -1,0 +1,8 @@
+﻿{
+  "agentId": 10,
+  "agentName": "DESKTOP-9N0LF69",
+  "poolId": 1,
+  "poolName": "Default",
+  "serverUrl": "https://dev.azure.com/PowerRangersTeam/",
+  "workFolder": "_work"
+}
